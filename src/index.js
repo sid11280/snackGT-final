@@ -1,12 +1,61 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Fragment } from 'react'
+import ReactDOM from 'react-dom'
+import Tesseract from 'tesseract.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// import Slider from '@material-ui/lab/Slider'
+// import Cropper from 'react-easy-crop'
+import './styles.css'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class App extends React.Component {
+  state = {
+    imageSrc: null,
+    crop: { x: 0, y: 0 },
+    zoom: 1,
+    aspect: 4 / 3,
+  }
+
+  // onCropChange = crop => {
+  //   this.setState({ crop })
+  // }
+
+  // onCropComplete = (croppedArea, croppedAreaPixels) => {
+  //   console.log(croppedArea, croppedAreaPixels)
+  // }
+
+  // onZoomChange = zoom => {
+  //   this.setState({ zoom })
+  // }
+
+  onFileChange = async e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const imageDataUrl = await readFile(e.target.files[0])
+	Tesseract.recognize(
+		  imageDataUrl,
+		  'eng',
+		  { logger: m => console.log(m) }
+		).then(({ data: { text } }) => {
+		  console.log(text);
+		})
+		    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <input type="file" onChange={this.onFileChange} />
+      </div>
+      )
+  }
+}
+
+function readFile(file) {
+
+  return new Promise(resolve => {
+    const reader = new FileReader()
+    reader.addEventListener('load', () => resolve(reader.result), false)
+    reader.readAsDataURL(file)
+  })
+}
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
