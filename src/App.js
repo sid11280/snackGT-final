@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Tesseract from "tesseract.js";
+import frontLogo from './frontLogo.png';
 
 class App extends Component {
 
@@ -29,23 +30,55 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
+            {/*<img src={logo} className="App-logo" alt="logo"/>*/}
+            {/*<p>*/}
+            {/*  Edit <code>src/App.js</code> and save to reload.*/}
+            {/*</p>*/}
+            {/*<a*/}
+            {/*    className="App-link"*/}
+            {/*    href="https://reactjs.org"*/}
+            {/*    target="_blank"*/}
+            {/*    rel="noopener noreferrer"*/}
+            {/*>*/}
+            {/*  Learn React*/}
+            {/*</a>*/}
+            <div className="logo">
+              <img width="321" height="93" src={frontLogo} />
+            </div>
+            <h1 className="text">
+              An app created for HackGT
+            </h1>
+
+            <h5 className="text">
+              by Aditya Tapshalkar, Ibrahima Diallo, Siddhant Singh, and William Braga
+            </h5>
+
+            <br />
+
+            <hr width="75%" />
+
+            <p className="text" align="justify">
+              What is blocGT? blocGT is a platform where you can upload pictures of block-based code, which will then convert your block-based code into functioning Arduino code.
+              <br />
+              We implemented React and Tesseract to build the website and process the image, and used _____ to convert the resulting image into Arduino code.
             </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
+
+            <br />
+            <br />
+
+            <h3 className="text" align="center">
+              Upload image below!
+            </h3>
+
+            <div className="fileUpload">
+              <input type="file" onChange={this.onFileChange} />
+            </div>
+
           </header>
 
-          <div className="App">
-            <input type="file" onChange={this.onFileChange} />
-          </div>
+
+
+
 
 
         </div>

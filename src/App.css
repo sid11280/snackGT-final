@@ -17,9 +17,36 @@
   color: white;
 }
 
-.test {
+.fileUpload {
   text-align: center;
+  /*padding-top: 100px;*/
+  align-items: center;
+}
 
+.logo {
+  align-items: center;
+}
+
+.text {
+  font-family: Arial;
+}
+
+h5 {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  margin: 0px;
+  padding: 20px;
+}
+
+p {
+  font-size: small;
+  /*alignment: left;*/
+  word-wrap: break-spaces;
+  overflow-wrap: break-spaces;
+  max-width: 500px;
 }
 
 .App-link {
