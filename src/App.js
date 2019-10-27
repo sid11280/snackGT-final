@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import ReactDOM from 'react-dom';
 import './App.css';
 import Tesseract from "tesseract.js";
 import frontLogo from './frontLogo.png';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
 
@@ -22,6 +24,7 @@ class App extends Component {
           { logger: m => console.log(m) }
       ).then(({ data: { text } }) => {
         console.log(text);
+        displayResult(text);
       })
     }
   };
@@ -93,6 +96,15 @@ function readFile(file) {
     reader.addEventListener('load', () => resolve(reader.result), false);
     reader.readAsDataURL(file)
   })
+}
+
+function displayResult(text) {
+  const element = (
+    <div>
+      <h1>{text}</h1>
+    </div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
 }
 
 export default App;
